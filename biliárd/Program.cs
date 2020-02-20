@@ -4,38 +4,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace biliárd
+namespace billiard
 {
     class Program
     {
         static void Main(string[] args)
         {
-            List<int> golyók = new List<int>();
-            Kezdés(golyók);
-            int leeső = Leesősorsoló(golyók);
-            Kiíró(golyók);
+            List<int> golyok = new List<int>();
+            kezdes(golyok);
+            int leesett;
+            int szamolo = 0;
+            do
+            {
+                szamolo++;
+                leesett = eltettsors(golyok);
+                Console.WriteLine($"Az elrakott golyó:{leesett} ");
+                kiiro(golyok);
+                Console.ReadKey();
+                
+            } while (golyok.Contains(8));
+            if (golyok.Count==0)
+            {
+                Console.WriteLine("Nyertél");
+            }
+            else
+            {
+                Console.WriteLine("MÉ RAKTAD EL A NYÓCAT?");
+                Console.WriteLine("Vesztettél");
+            }
             
             Console.ReadKey();
         }
 
-        static void Kiíró(List<int> golyók)
+        static void kiiro(List<int> golyok)
         {
-            foreach (int elem in golyók) Console.Write($"{elem} ");
+            foreach (var item in golyok)
+            {
+                Console.Write($"{item} ");
+            }
+            Console.WriteLine();
         }
 
-        static int Leesősorsoló(List<int> golyók)
+        static int eltettsors(List<int> golyok)
         {
-            Random gép = new Random();
-            int leesett = gép.Next(golyók.Count);
-            golyók.Remove(leesett);
-            return golyók[leesett];
+            Random rnd = new Random();
+            int szám = rnd.Next(golyok.Count);
+            int sorsolt = golyok[szám];
+            golyok.Remove(golyok[szám]);
+            return sorsolt;
+            
+
         }
 
-        static void Kezdés(List<int> golyók)
+        static void kezdes(List<int> golyok)
         {
             for (int i = 1; i <= 15; i++)
             {
-                golyók.Add(i);
+                golyok.Add(i);
             }
         }
     }
