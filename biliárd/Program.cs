@@ -29,7 +29,7 @@ namespace billiard
             }
             else
             {
-                Console.WriteLine("MÉ RAKTAD EL A NYÓCAT?");
+                Console.WriteLine("Elraktad a nyolcast!");
                 Console.WriteLine("Vesztettél");
             }
             
